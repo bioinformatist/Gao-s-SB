@@ -40,6 +40,9 @@ You may perform as follow picture:
 The result of this tool seems like:
 ![example_result_download_seq.png](docs/imgs/example_result_download_seq.png)
 
+## Installation
+The `zip` file currently hosted on [releases page](https://github.com/bioinformatist/Gao-s-SB/releases) of this repo. Just unzip it then find `exe` file for using.
+
 ## Contributor:
 - [Yu Sun](http://icannotendure.space/)
 - [Zhiguang Chen](https://github.com/Dgmaxxx) (May participate soon）
