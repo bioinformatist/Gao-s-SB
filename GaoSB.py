@@ -2,6 +2,9 @@ import os
 import re
 import subprocess
 
+from Bio import Entrez
+from Bio import SeqIO
+
 from PyQt5 import QtWidgets
 
 from gui import Ui_MainWindow
@@ -11,8 +14,20 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MyWindow, self).__init__()
         self.setupUi(self)
+        self.actionQuery_Aligner.triggered.connect(self.align_queries)
+        self.actionAbout.triggered.connect(self.about)
+        self.actionDownload_sequence.triggered.connect(self.download_sequences)
 
-    def align_query(self):
+    def align_queries(self):
+        self.stackedWidget_main.setCurrentWidget(self.page_alignQuery)
+
+    def about(self):
+        self.stackedWidget_main.setCurrentWidget(self.page_about)
+
+    def download_sequences(self):
+        self.stackedWidget_main.setCurrentWidget(self.page_downloadSeq)
+
+    def do_align_query(self):
         # Transfer subject in Text Edit and make a tmp file
         # TODO check blank line, newline in the end and other format problem
         whole_subject = str(self.textEdit_subject.toPlainText()).splitlines()
@@ -26,7 +41,7 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         with open('tmp_query', 'w') as f:
             f.writelines('\n'.join(whole_query))
         # Transfer filename in Text Edit
-        destination_file = str(self.textEdit_destination.toPlainText())
+        destination_file = str(self.textEdit_AlignmentDestination.toPlainText())
         # Call magicblast and redirect its output (SAM format in default)
         process_magicblast = subprocess.run(
             ['dependencies' + os.sep + 'magicblast', '-query', 'tmp_query', '-subject', "tmp_ref"],
@@ -83,6 +98,24 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 seq = (int(result[3]) - 2 - offset) * ' ' + seq
                 f_result.writelines(('\t' * 2).join(['{:{max_id_len}}'.format(result_id, max_id_len=max_id_len), seq]))
                 f_result.writelines('\n')
+
+    def do_download_seq(self):
+        Entrez.email = "sun_yu@mail.nankai.edu.cn"
+        accession_pool = {}
+        accession_list = str(self.textEdit_accessionList.toPlainText()).splitlines()
+        destination_file = str(self.textEdit_downloadSeqDestination.toPlainText())
+        with open(destination_file, 'w') as f:
+            for accession in accession_list:
+                accession = accession.split('\t')
+                accession_pool.setdefault(accession[0], [])
+                accession_pool[accession[0]].append([int(x) for x in accession[-2:]])
+            handle = Entrez.efetch(db="nuccore", rettype='gb', id=list(accession_pool.keys()))
+            records = list(SeqIO.parse(handle, "gb"))
+            for record in records:
+                for location in accession_pool[record.id]:
+                    f.write('>{} | {}-{}\n{}\n'.format(record.id, location[0], location[1], record.seq[location[0]-1:location[1]]))
+
+
 
 
 if __name__ == '__main__':
