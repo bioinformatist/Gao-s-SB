@@ -1,23 +1,23 @@
 # Dr.***Gao's*** <i>**S**</i>trange requirement oriented tool <i>***B***</i>ox (**Gao's SB**)
 A toolbox for bioinformatics works in Dr. Gao's lab.
 
-## Requirements: 
+## Requirements
 - None
 - But currently only for Windows user
 
-## Features:
+## Features
 This application has the following features:
 - Batch align queries to a single reference, and generate a file containing alignments in format for (could be, but not limited to) supplementary files of publication.
-- Batch download sequence by *accession number* as specific base location.
+- Batch download sequence by *accession number* with specific base location.
 
-## Known issues:
+## Known issues
 - Since *MagicBlast* has been chosen as aligner, the boundaries of alignments may not as accurate as you think. 
 It also can occur at `-` (a placeholder representing a base length, known as a deletion in query). 
 You **should** check and modify the results yourself. 
 **However, the program still saves you a lot of time.**
-- I won't provide a archive of one-file bundle for some time to come.
+- ~~I won't provide a archive of one-file bundle for some time to come.~~
 
-## Examples:
+## Examples
 ### 1. Align queries to subject(single-sequence reference)
 You may perform as follow picture:
 ![example_how_align_queries.png](docs/imgs/example_how_align_queries.png)
@@ -40,17 +40,19 @@ You may perform as follow picture:
 The result of this tool seems like:
 ![example_result_download_seq.png](docs/imgs/example_result_download_seq.png)
 
-## Contributor:
+## Contributor
 - [Yu Sun](http://icannotendure.space/)
 - [Zhiguang Chen](https://github.com/Dgmaxxx) (May participate soon）
 
-## TODO:
-- Handle with error.
+## TODO
+- ~~Handle with error.~~
 - ~~New feature: Get sequences with specific region from NCBI databases.~~
 - Add logo.
 - Add icon.
-- Add warnings and other dialog widgets.
+- ~~Add warnings and other dialog widgets.~~
 - Perform UPX compression on certain dependencies for binary release.
+- New feature: Batch extract sequences from *FASTA/FASTQ* file.
+- Provide Installer release on *Windows* platform.
 
-## License:
+## License
 This project is released under the MIT license. See the included license file.
