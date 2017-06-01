@@ -3,7 +3,7 @@
 
 # Dependencies dir
 
-/gaosb/core/dependencies/
+dependencies/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
