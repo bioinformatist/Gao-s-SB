@@ -1,5 +1,4 @@
 # Dr. <i>**G**</i>aoShanSB's <i>**a**</i>bnormal requirements <i>**o**</i>riented, <i>**S**</i>uper <i>**h**</i>umorous <i>**a**</i>nd <i>**n**</i>ot <i>**S**</i>cientific tool <i>**B**</i>ox
-# Dr. <i>**G**</i>ao's <i>**a**</i>bnormal requirements <i>**o**</i>riented, <i>**S**</i>uper <i>**h**</i>umorous <i>**a**</i>nd <i>**n**</i>ot <i>**S**</i>cientific tool <i>**B**</i>ox
 
 A toolbox for bioinformatics works in Dr. Gao's lab.
 
