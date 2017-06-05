@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Gao's SB.ui'
+# Form implementation generated from reading ui file 'gui\Gao's SB.ui'
 #
 # Created by: PyQt5 UI code generator 5.6
 #
@@ -81,13 +81,13 @@ class Ui_MainWindow(object):
         self.page_downloadSeq = QtWidgets.QWidget()
         self.page_downloadSeq.setObjectName("page_downloadSeq")
         self.textEdit_accessionList = QtWidgets.QTextEdit(self.page_downloadSeq)
-        self.textEdit_accessionList.setGeometry(QtCore.QRect(10, 130, 381, 401))
+        self.textEdit_accessionList.setGeometry(QtCore.QRect(10, 50, 391, 481))
         self.textEdit_accessionList.setObjectName("textEdit_accessionList")
         self.label_accessionList = QtWidgets.QLabel(self.page_downloadSeq)
-        self.label_accessionList.setGeometry(QtCore.QRect(10, 20, 641, 111))
+        self.label_accessionList.setGeometry(QtCore.QRect(10, 20, 471, 21))
         self.label_accessionList.setObjectName("label_accessionList")
         self.label_3 = QtWidgets.QLabel(self.page_downloadSeq)
-        self.label_3.setGeometry(QtCore.QRect(420, 200, 191, 16))
+        self.label_3.setGeometry(QtCore.QRect(460, 190, 191, 16))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(True)
@@ -95,10 +95,10 @@ class Ui_MainWindow(object):
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
         self.textEdit_downloadSeqDestination = QtWidgets.QTextEdit(self.page_downloadSeq)
-        self.textEdit_downloadSeqDestination.setGeometry(QtCore.QRect(420, 240, 221, 31))
+        self.textEdit_downloadSeqDestination.setGeometry(QtCore.QRect(460, 230, 221, 31))
         self.textEdit_downloadSeqDestination.setObjectName("textEdit_downloadSeqDestination")
         self.pushButton_doDownloadSeq = QtWidgets.QPushButton(self.page_downloadSeq)
-        self.pushButton_doDownloadSeq.setGeometry(QtCore.QRect(570, 290, 75, 23))
+        self.pushButton_doDownloadSeq.setGeometry(QtCore.QRect(610, 280, 75, 23))
         font = QtGui.QFont()
         font.setPointSize(15)
         font.setBold(False)
@@ -107,6 +107,11 @@ class Ui_MainWindow(object):
         self.pushButton_doDownloadSeq.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_doDownloadSeq.setCheckable(True)
         self.pushButton_doDownloadSeq.setObjectName("pushButton_doDownloadSeq")
+        self.textEdit_accessionList.raise_()
+        self.label_accessionList.raise_()
+        self.label_3.raise_()
+        self.textEdit_downloadSeqDestination.raise_()
+        self.pushButton_doDownloadSeq.raise_()
         self.stackedWidget_main.addWidget(self.page_downloadSeq)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -138,14 +143,26 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Gao\'s SB"))
         self.label_about.setText(_translate("MainWindow", "About"))
         self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">What you\'re using is a toolbox for</span></p><p><span style=\" font-size:18pt;\">bioinformatics works in Dr. Gao\'s lab.</span></p><p><span style=\" font-size:18pt;\">Contributors: </span><a href=\"http://icannotendure.space/\"><span style=\" font-size:22pt; font-weight:600; font-style:italic; text-decoration: underline; color:#0000ff;\">Yu Sun</span></a></p><p><span style=\" font-size:18pt;\">You can choose tools from menu.</span></p></body></html>"))
         self.label_subject.setText(_translate("MainWindow", "Subject"))
         self.label_query.setText(_translate("MainWindow", "Query"))
         self.label.setText(_translate("MainWindow", "Output file:"))
         self.pushButton_doAligning.setText(_translate("MainWindow", "Do!"))
-        self.label_accessionList.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">Enter list as below:</span></p><p><span style=\" font-size:11pt; font-weight:600;\">Accesion number\\tStart loc\\tEnd loc</span></p><p><span style=\" font-size:11pt; font-weight:600;\">Example (press Tab to insert a tabular):</span></p><p><span style=\" font-size:11pt; font-weight:600;\">NC_005089.1 15354 16299</span></p></body></html>"))
+        self.textEdit_accessionList.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\"># Whole sequence example</span><span style=\" color:#666666;\">:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NC_005809.1</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NR_046235</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\"># By specific region example:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NC_005809.1    1655    1777</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NC_005809.1    1111    1234</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt; color:#666666;\"><br /></p></body></html>"))
+        self.label_accessionList.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">Enter list:</span></p></body></html>"))
         self.label_3.setText(_translate("MainWindow", "Output file"))
         self.pushButton_doDownloadSeq.setText(_translate("MainWindow", "Do!"))
         self.menuSequences.setTitle(_translate("MainWindow", "Sequences"))

@@ -2,6 +2,7 @@ import os
 import re
 import subprocess
 import sys
+from collections import defaultdict
 
 from Bio import Entrez
 from Bio import SeqIO
@@ -23,31 +24,47 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
+
 class Application(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(Application, self).__init__()
         self.setupUi(self)
         self._set_connections()
 
-    @staticmethod
-    def show_warnings(warning_content, warning_details, warning_title="Warning"):
-        msg = QMessageBox()
+    def raise_warnings(self, warning_content, warning_details, warning_title ="Warning"):
+        def show_warnings(warning_content, warning_details, warning_title="Warning"):
+            """
+            Raise a warning dialog when the app meets a handled error.
+            :param warning_content: the main text of dialog
+            :param warning_details: the detailed text
+            :param warning_title: the title of the dialog
+            :return: None
+            """
+            msg = QMessageBox()
 
-        msg.setIcon(QMessageBox.Warning)
-        msg.setText(warning_content)
-        msg.setInformativeText("You may check usage at "
-                               "<a href=https://github.com/bioinformatist/Gao-s-SB#examples>the owner's GitHub</a>."
-                               "Choose <b>Show Details</b> for additional information...")
-        msg.setWindowTitle(warning_title)
+            msg.setIcon(QMessageBox.Warning)
+            msg.setText(warning_content)
+            msg.setInformativeText("You may check usage at "
+                                   "<a href=https://github.com/bioinformatist/Gao-s-SB#examples>the owner's GitHub</a>."
+                                   "Choose <b>Show Details</b> for additional information...")
+            msg.setWindowTitle(warning_title)
 
-        msg.setDetailedText("The details are as follows:\n{}\n"
-                            .format(warning_details))
-        msg.setTextFormat(Qt.RichText)
-        msg.setTextInteractionFlags(Qt.TextSelectableByMouse)
+            msg.setDetailedText("The details are as follows:\n{}\n"
+                                .format(warning_details))
+            msg.setTextFormat(Qt.RichText)
+            msg.setTextInteractionFlags(Qt.TextSelectableByMouse)
 
-        msg.exec_()
+            msg.exec_()
+        self.statusbar.showMessage('Warning: halted now')
+        tmp_excepthook = sys.excepthook
+        sys.excepthook = self.show_warnings(warning_content, warning_details)
+        sys.excepthook = tmp_excepthook
 
     def _set_connections(self):
+        """
+        Build signal/slot connections once the app started.
+        :return: None
+        """
         self.actionAbout.triggered.connect(self.init_about)
         # To make the link in About page clickable
         self.label_2.linkActivated.connect(open_url)
@@ -61,22 +78,33 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
     def init_about(self):
         self.stackedWidget_main.setCurrentWidget(self.page_about)
 
+    def monitor_text_edit(self, button, *text_edit_list):
+        """
+        Apply empty check on certain textEdit boxes.
+        :param button: the button which should be set
+        :param text_edit_list: the textEdit box which should be monitored
+        :return: None
+        """
+        button.setDisabled(True)
+
+        def set_button(button, text_edit_list):
+            if all(t.toPlainText() for t in text_edit_list):
+                button.setEnabled(True)
+            else:
+                button.setEnabled(False)
+
+        check = lambda: set_button(button, text_edit_list)
+        [t.textChanged.connect(check) for t in text_edit_list]
+
     def init_align_queries(self):
         self.stackedWidget_main.setCurrentWidget(self.page_alignQuery)
-        self.pushButton_doAligning.setDisabled(True)
-        self.textEdit_alignmentDestination.textChanged.connect(self.check_button_aligning)
-        self.textEdit_subject.textChanged.connect(self.check_button_aligning)
-        self.textEdit_query.textChanged.connect(self.check_button_aligning)
-
-    def check_button_aligning(self):
-        if self.textEdit_subject.toPlainText() and self.textEdit_query.toPlainText() \
-                and self.textEdit_alignmentDestination.toPlainText():
-            self.pushButton_doAligning.setEnabled(True)
-        else:
-            self.pushButton_doAligning.setDisabled(True)
+        self.monitor_text_edit(self.pushButton_doAligning, self.textEdit_query, self.textEdit_subject,
+                               self.textEdit_alignmentDestination)
 
     def init_download_sequences(self):
         self.stackedWidget_main.setCurrentWidget(self.page_downloadSeq)
+        self.monitor_text_edit(self.pushButton_doDownloadSeq, self.textEdit_accessionList,
+                               self.textEdit_downloadSeqDestination)
 
     def do_align_query(self):
         # Transfer subject in Text Edit and make a tmp file
@@ -86,13 +114,10 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
             ref_id = whole_subject[0]
             ref_seq = whole_subject[1]
         except:
-            self.statusbar.showMessage('Warning: halted now')
-            tmp_excepthook = sys.excepthook
-            sys.excepthook = self.show_warnings('Format error: Wrong fasta input',
+            self.raise_warnings('Format error: Wrong fasta input',
                                                 'Only one subject sequence is supported. '
                                                 'You provide less or more than one sequence '
                                                 'or sequences not in fasta format.')
-            sys.excepthook = tmp_excepthook
             return
 
         try:
@@ -103,11 +128,8 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
             with open('tmp_query', 'w') as f:
                 f.writelines('\n'.join(whole_query))
         except:
-            self.statusbar.showMessage('Warning: halted now')
-            tmp_excepthook = sys.excepthook
-            sys.excepthook = self.show_warnings('I/O error: Can\'t create temp file',
+            self.raise_warnings('I/O error: Can\'t create temp file',
                                                 'You should check your privilege and remaining disk space.')
-            sys.excepthook = tmp_excepthook
             return
         # Transfer filename in Text Edit
         destination_file = str(self.textEdit_alignmentDestination.toPlainText())
@@ -115,7 +137,8 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         # Call magicblast and redirect its output (SAM format in default)
         self.statusbar.showMessage('Running magicblast...')
         process_magicblast = subprocess.run(
-            [resource_path('dependencies') + os.sep + 'magicblast', '-query', 'tmp_query', '-subject', "tmp_ref"],  **subprocess_args())
+            [resource_path('dependencies') + os.sep + 'magicblast', '-query', 'tmp_query', '-subject', "tmp_ref"],
+            **subprocess_args())
 
         self.statusbar.showMessage('Removing temp files...')
         tmp_list = ['tmp_ref', 'tmp_query']
@@ -175,51 +198,57 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
     def do_download_seq(self):
         self.statusbar.showMessage('Parsing parameters...')
         Entrez.email = "sun_yu@mail.nankai.edu.cn"
-        accession_pool = {}
         accession_list = str(self.textEdit_accessionList.toPlainText()).splitlines()
         destination_file = str(self.textEdit_downloadSeqDestination.toPlainText())
+
         try:
+            [accession_list.remove(s) for s in accession_list if s == '']
+            accession_pool_spec = defaultdict(list)
+            accession_pool_whole = []
+            blank_regex = re.compile('\s+')
+
             for accession in accession_list:
-                accession = accession.split('\t')
-                accession_pool.setdefault(accession[0], [])
-                accession_pool[accession[0]].append([int(x) for x in accession[-2:]])
+                if accession.startswith('#'):
+                    continue
+                if blank_regex.search(accession):
+                    accession = blank_regex.split(accession)
+                    accession_pool_spec[accession[0]].append([int(x) for x in accession[-2:]])
+                else:
+                    accession_pool_whole.append(accession)
+            accession_pool_whole = list(set(accession_pool_whole))
         except:
-            self.statusbar.showMessage('Warning: halted now')
-            tmp_excepthook = sys.excepthook
-            sys.excepthook = self.show_warnings('Format error: Wrong input',
-                                                'Please check your input content as well as separator.')
-            sys.excepthook = tmp_excepthook
+            self.raise_warnings('Format error: Wrong input', 'Please check your input content as well as separator.')
             return
 
-        self.statusbar.showMessage('Fetching sequences from NCBI databases...')
         try:
-            handle = Entrez.efetch(db="nuccore", rettype='gb', id=list(accession_pool.keys()))
+            self.statusbar.showMessage('Fetching sequences from NCBI databases...')
+            handle = Entrez.efetch(db="nuccore", rettype='gb', id=list(accession_pool_spec.keys()))
+            records_spec = list(SeqIO.parse(handle, "gb"))
+            handle = Entrez.efetch(db="nuccore", rettype='gb', id=accession_pool_whole)
+            records_whole = list(SeqIO.parse(handle, "gb"))
         except:
-            self.statusbar.showMessage('Warning: halted now')
-            tmp_excepthook = sys.excepthook
-            sys.excepthook = self.show_warnings('Network error: No connection', 'Please check your network connection.')
-            sys.excepthook = tmp_excepthook
+            self.raise_warnings('Network error: No connection', 'Please check your network connection.')
             return
 
-        self.statusbar.showMessage('Parsing downloaded sequences...')
-        records = list(SeqIO.parse(handle, "gb"))
         try:
+            self.statusbar.showMessage('Parsing downloaded sequences...')
             with open(destination_file, 'w') as f:
-                for record in records:
-                    for location in accession_pool[record.id]:
+                for record in records_whole:
+                    f.write('>{}\n{}\n'.format(record.id, record.seq))
+                for record in records_spec:
+                    for location in accession_pool_spec[record.id]:
                         f.write('>{} | {}-{}\n{}\n'.format(record.id, location[0], location[1],
                                                            record.seq[location[0] - 1:location[1]]))
+            self.statusbar.showMessage("Done.")
         except:
-            self.statusbar.showMessage('Warning: halted now')
-            tmp_excepthook = sys.excepthook
-            sys.excepthook = self.show_warnings('I/O error: Can\'t create output file',
+            self.raise_warnings('I/O error: Can\'t create output file',
                                                 'You should check your privilege and remaining disk space.')
-            sys.excepthook = tmp_excepthook
             return
 
 
 def open_url(url):
     QDesktopServices.openUrl(QtCore.QUrl(url))
+
 
 # Create a set of arguments which make a ``subprocess.Popen`` (and
 # variants) call work with or without Pyinstaller, ``--noconsole`` or
@@ -268,8 +297,5 @@ def subprocess_args(include_stdout=True):
     ret.update({'stdin': subprocess.PIPE,
                 'stderr': subprocess.PIPE,
                 'startupinfo': si,
-                'env': env })
+                'env': env})
     return ret
-
-if __name__ == '__main__':
-    print(resource_path('dependencies'))

@@ -1,5 +1,10 @@
 # Dr.***Gao's*** <i>**S**</i>trange requirement oriented tool <i>***B***</i>ox (**Gao's SB**)
-A toolbox for bioinformatics works in Dr. Gao's lab.
+
+A toolbox for bioinformatics works in Dr. Gao's lab. Also known as:
+
+>Dr. <i>**G**</i>aoShan's <i>**a**</i>bnormal requirements <i>**o**</i>riented, <i>**S**</i>uper <i>**h**</i>umorous <i>**a**</i>nd <i>**n**</i>ot <i>**S**</i>cientific tool <i>**B**</i>ox
+
+--By [Zhuoer Dong](https://github.com/Allan-Hilbert), with a little modification.
 
 ## Requirements
 - None
@@ -15,7 +20,7 @@ This application has the following features:
 It also can occur at `-` (a placeholder representing a base length, known as a deletion in query). 
 You **should** check and modify the results yourself. 
 **However, the program still saves you a lot of time.**
-- ~~I won't provide a archive of one-file bundle for some time to come.~~
+- The **exe** release may a little **big in size** now. I still cannot perform UPX compression on application based on PyQt now.
 
 ## Examples
 ### 1. Align queries to subject(single-sequence reference)
@@ -45,14 +50,14 @@ The result of this tool seems like:
 - [Zhiguang Chen](https://github.com/Dgmaxxx) (May participate soon）
 
 ## TODO
-- ~~Handle with error.~~
-- ~~New feature: Get sequences with specific region from NCBI databases.~~
 - Add logo.
 - Add icon.
-- ~~Add warnings and other dialog widgets.~~
 - Perform UPX compression on certain dependencies for binary release.
 - New feature: Batch extract sequences from *FASTA/FASTQ* file.
 - Provide Installer release on *Windows* platform.
+
+## Acknowledgement
+Thanks for [Zhuoer Dong](https://github.com/Allan-Hilbert)'s suggestion on the name of this software.
 
 ## License
 This project is released under the MIT license. See the included license file.

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Gao's SB</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="stackedWidget_main">
@@ -178,10 +178,24 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>130</y>
-        <width>381</width>
-        <height>401</height>
+        <y>50</y>
+        <width>391</width>
+        <height>481</height>
        </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; color:#666666;&quot;&gt;# Whole sequence example&lt;/span&gt;&lt;span style=&quot; color:#666666;&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; color:#666666;&quot;&gt;NC_005809.1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; color:#666666;&quot;&gt;NR_046235&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; color:#666666;&quot;&gt;# By specific region example:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; color:#666666;&quot;&gt;NC_005809.1	1655	1777&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; color:#666666;&quot;&gt;NC_005809.1	1111	1234&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt; color:#666666;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_accessionList">
@@ -189,19 +203,19 @@
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>641</width>
-        <height>111</height>
+        <width>471</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Enter list as below:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Accesion number\tStart loc\tEnd loc&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Example (press Tab to insert a tabular):&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;NC_005089.1 15354 16299&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Enter list:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>200</y>
+        <x>460</x>
+        <y>190</y>
         <width>191</width>
         <height>16</height>
        </rect>
@@ -220,8 +234,8 @@
      <widget class="QTextEdit" name="textEdit_downloadSeqDestination">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>240</y>
+        <x>460</x>
+        <y>230</y>
         <width>221</width>
         <height>31</height>
        </rect>
@@ -230,8 +244,8 @@
      <widget class="QPushButton" name="pushButton_doDownloadSeq">
       <property name="geometry">
        <rect>
-        <x>570</x>
-        <y>290</y>
+        <x>610</x>
+        <y>280</y>
         <width>75</width>
         <height>23</height>
        </rect>
@@ -253,6 +267,15 @@
        <bool>true</bool>
       </property>
      </widget>
+     <zorder>textEdit_accessionList</zorder>
+     <zorder>label_accessionList</zorder>
+     <zorder>label_3</zorder>
+     <zorder>textEdit_downloadSeqDestination</zorder>
+     <zorder>pushButton_doDownloadSeq</zorder>
+     <zorder>radioButton_wholeSeq</zorder>
+     <zorder>radioButton_specRegion</zorder>
+     <zorder>radioButton_wholeSeq</zorder>
+     <zorder>radioButton_specRegion</zorder>
     </widget>
    </widget>
   </widget>

@@ -2,7 +2,6 @@
 .idea/
 
 # Dependencies dir
-
 dependencies/
 
 # Byte-compiled / optimized / DLL files
@@ -37,6 +36,7 @@ wheels/
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+upx*
 
 # Installer logs
 pip-log.txt
