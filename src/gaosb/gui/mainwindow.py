@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'gui\Gao's SB.ui'
+# Form implementation generated from reading ui file 'Gao's SB.ui'
 #
 # Created by: PyQt5 UI code generator 5.6
 #
@@ -64,7 +64,7 @@ class Ui_MainWindow(object):
         self.pushButton_doAligning = QtWidgets.QPushButton(self.page_alignQuery)
         self.pushButton_doAligning.setGeometry(QtCore.QRect(430, 440, 75, 23))
         font = QtGui.QFont()
-        font.setPointSize(15)
+        font.setPointSize(10)
         self.pushButton_doAligning.setFont(font)
         self.pushButton_doAligning.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_doAligning.setCheckable(True)
@@ -100,19 +100,73 @@ class Ui_MainWindow(object):
         self.pushButton_doDownloadSeq = QtWidgets.QPushButton(self.page_downloadSeq)
         self.pushButton_doDownloadSeq.setGeometry(QtCore.QRect(610, 280, 75, 23))
         font = QtGui.QFont()
-        font.setPointSize(15)
+        font.setPointSize(10)
         font.setBold(False)
         font.setWeight(50)
         self.pushButton_doDownloadSeq.setFont(font)
         self.pushButton_doDownloadSeq.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_doDownloadSeq.setCheckable(True)
         self.pushButton_doDownloadSeq.setObjectName("pushButton_doDownloadSeq")
+        self.checkBox_removeVersion = QtWidgets.QCheckBox(self.page_downloadSeq)
+        self.checkBox_removeVersion.setGeometry(QtCore.QRect(460, 120, 221, 41))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.checkBox_removeVersion.setFont(font)
+        self.checkBox_removeVersion.setObjectName("checkBox_removeVersion")
         self.textEdit_accessionList.raise_()
         self.label_accessionList.raise_()
         self.label_3.raise_()
         self.textEdit_downloadSeqDestination.raise_()
         self.pushButton_doDownloadSeq.raise_()
+        self.checkBox_removeVersion.raise_()
         self.stackedWidget_main.addWidget(self.page_downloadSeq)
+        self.page_filtering = QtWidgets.QWidget()
+        self.page_filtering.setObjectName("page_filtering")
+        self.tabWidget = QtWidgets.QTabWidget(self.page_filtering)
+        self.tabWidget.setGeometry(QtCore.QRect(6, -1, 781, 541))
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab_superUniq = QtWidgets.QWidget()
+        self.tab_superUniq.setObjectName("tab_superUniq")
+        self.textEdit_uniqInput = QtWidgets.QTextEdit(self.tab_superUniq)
+        self.textEdit_uniqInput.setGeometry(QtCore.QRect(20, 60, 361, 441))
+        self.textEdit_uniqInput.setObjectName("textEdit_uniqInput")
+        self.textBrowser_uniqResult = QtWidgets.QTextBrowser(self.tab_superUniq)
+        self.textBrowser_uniqResult.setGeometry(QtCore.QRect(400, 120, 361, 381))
+        self.textBrowser_uniqResult.setObjectName("textBrowser_uniqResult")
+        self.label_4 = QtWidgets.QLabel(self.tab_superUniq)
+        self.label_4.setGeometry(QtCore.QRect(20, 20, 311, 31))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.label_5 = QtWidgets.QLabel(self.tab_superUniq)
+        self.label_5.setGeometry(QtCore.QRect(400, 100, 231, 21))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_5.setFont(font)
+        self.label_5.setObjectName("label_5")
+        self.label_6 = QtWidgets.QLabel(self.tab_superUniq)
+        self.label_6.setGeometry(QtCore.QRect(400, 30, 221, 21))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_6.setFont(font)
+        self.label_6.setObjectName("label_6")
+        self.textEdit_uniqSep = QtWidgets.QTextEdit(self.tab_superUniq)
+        self.textEdit_uniqSep.setGeometry(QtCore.QRect(400, 60, 151, 31))
+        self.textEdit_uniqSep.setObjectName("textEdit_uniqSep")
+        self.pushButton_doSuperUniq = QtWidgets.QPushButton(self.tab_superUniq)
+        self.pushButton_doSuperUniq.setGeometry(QtCore.QRect(570, 60, 75, 23))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.pushButton_doSuperUniq.setFont(font)
+        self.pushButton_doSuperUniq.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_doSuperUniq.setCheckable(True)
+        self.pushButton_doSuperUniq.setObjectName("pushButton_doSuperUniq")
+        self.tabWidget.addTab(self.tab_superUniq, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setObjectName("tab_2")
+        self.tabWidget.addTab(self.tab_2, "")
+        self.stackedWidget_main.addWidget(self.page_filtering)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 23))
@@ -121,6 +175,8 @@ class Ui_MainWindow(object):
         self.menuSequences.setObjectName("menuSequences")
         self.menuHelp = QtWidgets.QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
+        self.menuTables = QtWidgets.QMenu(self.menubar)
+        self.menuTables.setObjectName("menuTables")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -131,14 +187,23 @@ class Ui_MainWindow(object):
         self.actionAbout.setObjectName("actionAbout")
         self.action_downloadSequence = QtWidgets.QAction(MainWindow)
         self.action_downloadSequence.setObjectName("action_downloadSequence")
+        self.action_filtering = QtWidgets.QAction(MainWindow)
+        self.action_filtering.setObjectName("action_filtering")
+        self.action_help = QtWidgets.QAction(MainWindow)
+        self.action_help.setObjectName("action_help")
         self.menuSequences.addAction(self.action_queryAligner)
         self.menuSequences.addAction(self.action_downloadSequence)
+        self.menuHelp.addAction(self.action_help)
+        self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionAbout)
+        self.menuTables.addAction(self.action_filtering)
         self.menubar.addAction(self.menuSequences.menuAction())
+        self.menubar.addAction(self.menuTables.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
         self.stackedWidget_main.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -165,9 +230,105 @@ class Ui_MainWindow(object):
         self.label_accessionList.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">Enter list:</span></p></body></html>"))
         self.label_3.setText(_translate("MainWindow", "Output file"))
         self.pushButton_doDownloadSeq.setText(_translate("MainWindow", "Do!"))
+        self.checkBox_removeVersion.setText(_translate("MainWindow", "Auto remove version number"))
+        self.textEdit_uniqInput.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
+"<tr>\n"
+"<td width=\"280\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\"># Example:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">FJ150422</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">DQ439815</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">DQ439815</span></p></td></tr>\n"
+"<tr>\n"
+"<td>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr></table></body></html>"))
+        self.label_4.setText(_translate("MainWindow", "Text to be split then apply uniq on:"))
+        self.label_5.setText(_translate("MainWindow", "Result:"))
+        self.label_6.setText(_translate("MainWindow", "Separator (regular expreesion):"))
+        self.textEdit_uniqSep.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'inherit\'; font-size:10pt; color:#666666; background-color:#eff0f1;\">[^a-zA-Z0-9]</span></p></body></html>"))
+        self.pushButton_doSuperUniq.setText(_translate("MainWindow", "Do!"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_superUniq), _translate("MainWindow", "Super Uniqer"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Developing..."))
         self.menuSequences.setTitle(_translate("MainWindow", "Sequences"))
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
+        self.menuTables.setTitle(_translate("MainWindow", "Tables"))
         self.action_queryAligner.setText(_translate("MainWindow", "Align queries"))
         self.actionAbout.setText(_translate("MainWindow", "About"))
         self.action_downloadSequence.setText(_translate("MainWindow", "Download sequences"))
+        self.action_filtering.setText(_translate("MainWindow", "Filtering"))
+        self.action_help.setText(_translate("MainWindow", "Help"))
 

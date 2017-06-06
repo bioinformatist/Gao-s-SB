@@ -31,7 +31,7 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self._set_connections()
 
-    def raise_warnings(self, warning_content, warning_details, warning_title ="Warning"):
+    def raise_warnings(self, warning_content, warning_details, warning_title="Warning"):
         def show_warnings(warning_content, warning_details, warning_title="Warning"):
             """
             Raise a warning dialog when the app meets a handled error.
@@ -55,9 +55,10 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
             msg.setTextInteractionFlags(Qt.TextSelectableByMouse)
 
             msg.exec_()
+
         self.statusbar.showMessage('Warning: halted now')
         tmp_excepthook = sys.excepthook
-        sys.excepthook = self.show_warnings(warning_content, warning_details)
+        sys.excepthook = show_warnings(warning_content, warning_details)
         sys.excepthook = tmp_excepthook
 
     def _set_connections(self):
@@ -69,11 +70,24 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         # To make the link in About page clickable
         self.label_2.linkActivated.connect(open_url)
 
+        def open_help_url():
+            url = QtCore.QUrl('https://github.com/bioinformatist/Gao-s-SB#examples')
+            try:
+                QDesktopServices.openUrl(url)
+            except:
+                self.raise_warnings('Network error: No connection', 'Please check your network connection.')
+                return
+
+        self.action_help.triggered.connect(open_help_url)
+
         self.action_queryAligner.triggered.connect(self.init_align_queries)
         self.pushButton_doAligning.clicked.connect(self.do_align_query)
 
         self.action_downloadSequence.triggered.connect(self.init_download_sequences)
         self.pushButton_doDownloadSeq.clicked.connect(self.do_download_seq)
+
+        self.action_filtering.triggered.connect(self.init_super_uniq)
+        self.pushButton_doSuperUniq.clicked.connect(self.do_super_uniq)
 
     def init_about(self):
         self.stackedWidget_main.setCurrentWidget(self.page_about)
@@ -82,7 +96,7 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         Apply empty check on certain textEdit boxes.
         :param button: the button which should be set
-        :param text_edit_list: the textEdit box which should be monitored
+        :param text_edit_list: the textEdit boxes which should be monitored
         :return: None
         """
         button.setDisabled(True)
@@ -106,6 +120,10 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         self.monitor_text_edit(self.pushButton_doDownloadSeq, self.textEdit_accessionList,
                                self.textEdit_downloadSeqDestination)
 
+    def init_super_uniq(self):
+        self.stackedWidget_main.setCurrentWidget(self.page_filtering)
+        self.monitor_text_edit(self.pushButton_doSuperUniq, self.textEdit_uniqInput)
+
     def do_align_query(self):
         # Transfer subject in Text Edit and make a tmp file
         self.statusbar.showMessage('Parsing parameters and creating temp files...')
@@ -115,9 +133,9 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
             ref_seq = whole_subject[1]
         except:
             self.raise_warnings('Format error: Wrong fasta input',
-                                                'Only one subject sequence is supported. '
-                                                'You provide less or more than one sequence '
-                                                'or sequences not in fasta format.')
+                                'Only one subject sequence is supported. '
+                                'You provide less or more than one sequence '
+                                'or sequences not in fasta format.')
             return
 
         try:
@@ -129,7 +147,7 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
                 f.writelines('\n'.join(whole_query))
         except:
             self.raise_warnings('I/O error: Can\'t create temp file',
-                                                'You should check your privilege and remaining disk space.')
+                                'You should check your privilege and remaining disk space.')
             return
         # Transfer filename in Text Edit
         destination_file = str(self.textEdit_alignmentDestination.toPlainText())
@@ -234,16 +252,44 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
             self.statusbar.showMessage('Parsing downloaded sequences...')
             with open(destination_file, 'w') as f:
                 for record in records_whole:
-                    f.write('>{}\n{}\n'.format(record.id, record.seq))
+                    if self.checkBox_removeVersion.isChecked():
+                        f.write('>{}\n{}\n'.format(record.id.split('.')[0], record.seq))
+                    else:
+                        f.write('>{}\n{}\n'.format(record.id, record.seq))
                 for record in records_spec:
                     for location in accession_pool_spec[record.id]:
-                        f.write('>{} | {}-{}\n{}\n'.format(record.id, location[0], location[1],
-                                                           record.seq[location[0] - 1:location[1]]))
+                        if self.checkBox_removeVersion.isChecked():
+                            f.write('>{} | {}-{}\n{}\n'.format(record.id.split('.')[0], location[0], location[1],
+                                                               record.seq[location[0] - 1:location[1]]))
+                        else:
+                            f.write('>{} | {}-{}\n{}\n'.format(record.id, location[0], location[1],
+                                                               record.seq[location[0] - 1:location[1]]))
             self.statusbar.showMessage("Done.")
         except:
             self.raise_warnings('I/O error: Can\'t create output file',
-                                                'You should check your privilege and remaining disk space.')
+                                'You should check your privilege and remaining disk space.')
             return
+
+    def do_super_uniq(self):
+        self.statusbar.showMessage('Running...')
+        self.textBrowser_uniqResult.setText('')
+        redundant_list = str(self.textEdit_uniqInput.toPlainText()).splitlines()
+        custom_regex = re.compile(str(self.textEdit_uniqSep.toPlainText()))
+        print(custom_regex)
+
+        def remove_redundant(input_list):
+            redundant_pool = []
+            for item in input_list:
+                if item.startswith('#') or item == 'NA':
+                    continue
+                item = custom_regex.split(item)
+                redundant_pool.extend(item)
+
+            redundant_pool = list(set(redundant_pool))
+            [self.textBrowser_uniqResult.append(r) for r in redundant_pool]
+
+        remove_redundant(redundant_list)
+        self.statusbar.showMessage('Done.')
 
 
 def open_url(url):
