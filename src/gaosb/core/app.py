@@ -30,6 +30,7 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         super(Application, self).__init__()
         self.setupUi(self)
         self._set_connections()
+        self.working_directory = os.getcwd()
 
     def raise_warnings(self, warning_content, warning_details, warning_title="Warning"):
         def show_warnings(warning_content, warning_details, warning_title="Warning"):
@@ -66,7 +67,7 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         Build signal/slot connections once the app started.
         :return: None
         """
-        self.actionAbout.triggered.connect(self.init_about)
+        self.action_about.triggered.connect(self.init_about)
         # To make the link in About page clickable
         self.label_2.linkActivated.connect(open_url)
 
@@ -79,15 +80,14 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
                 return
 
         self.action_help.triggered.connect(open_help_url)
-
+        # self.action_setWorkingDirectory.triggered.connect()
         self.action_queryAligner.triggered.connect(self.init_align_queries)
-        self.pushButton_doAligning.clicked.connect(self.do_align_query)
-
         self.action_downloadSequence.triggered.connect(self.init_download_sequences)
-        self.pushButton_doDownloadSeq.clicked.connect(self.do_download_seq)
+        self.action_filtering.triggered.connect(self.init_filtering)
 
-        self.action_filtering.triggered.connect(self.init_super_uniq)
-        self.pushButton_doSuperUniq.clicked.connect(self.do_super_uniq)
+    def checkbox_activate_button(self, checkbox, button):
+        if checkbox.isChecked():
+            button.setEnabled(True)
 
     def init_about(self):
         self.stackedWidget_main.setCurrentWidget(self.page_about)
@@ -107,21 +107,38 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 button.setEnabled(False)
 
-        check = lambda: set_button(button, text_edit_list)
-        [t.textChanged.connect(check) for t in text_edit_list]
+        checking = lambda: set_button(button, text_edit_list)
+        [t.textChanged.connect(checking) for t in text_edit_list]
+
+    def link_checkbox(self, primary_box, attached_box):
+
+        def set_checkbox(primary_box, attached_box):
+            if primary_box.isChecked():
+                attached_box.setChecked(True)
+            else:
+                attached_box.setChecked(False)
+
+        setting = lambda: set_checkbox(primary_box, attached_box)
+        primary_box.stateChanged.connect(setting)
 
     def init_align_queries(self):
         self.stackedWidget_main.setCurrentWidget(self.page_alignQuery)
+        self.pushButton_doAligning.clicked.connect(self.do_align_query)
         self.monitor_text_edit(self.pushButton_doAligning, self.textEdit_query, self.textEdit_subject,
                                self.textEdit_alignmentDestination)
 
     def init_download_sequences(self):
         self.stackedWidget_main.setCurrentWidget(self.page_downloadSeq)
+        self.pushButton_doDownloadSeq.clicked.connect(self.do_download_seq)
+        self.link_checkbox(self.checkBox_oneFile, self.checkBox_removeVersion)
+        activating = lambda: self.checkbox_activate_button(self.checkBox_oneFile, self.pushButton_doDownloadSeq)
+        self.checkBox_oneFile.stateChanged.connect(activating)
         self.monitor_text_edit(self.pushButton_doDownloadSeq, self.textEdit_accessionList,
                                self.textEdit_downloadSeqDestination)
 
-    def init_super_uniq(self):
+    def init_filtering(self):
         self.stackedWidget_main.setCurrentWidget(self.page_filtering)
+        self.pushButton_doSuperUniq.clicked.connect(self.do_super_uniq)
         self.monitor_text_edit(self.pushButton_doSuperUniq, self.textEdit_uniqInput)
 
     def do_align_query(self):
@@ -229,13 +246,16 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
                 if accession.startswith('#'):
                     continue
                 if blank_regex.search(accession):
+                    if self.checkBox_oneFile.isChecked():
+                        raise Exception
                     accession = blank_regex.split(accession)
                     accession_pool_spec[accession[0]].append([int(x) for x in accession[-2:]])
                 else:
                     accession_pool_whole.append(accession)
             accession_pool_whole = list(set(accession_pool_whole))
         except:
-            self.raise_warnings('Format error: Wrong input', 'Please check your input content as well as separator.')
+            self.raise_warnings('Format error: Wrong input',
+                                'Please check your output mode or input content as well as separator.')
             return
 
         try:
@@ -250,20 +270,25 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
 
         try:
             self.statusbar.showMessage('Parsing downloaded sequences...')
-            with open(destination_file, 'w') as f:
+            if self.checkBox_oneFile.isChecked():
                 for record in records_whole:
-                    if self.checkBox_removeVersion.isChecked():
+                    with open(record.id.split('.')[0] + '.fa', 'w') as f:
                         f.write('>{}\n{}\n'.format(record.id.split('.')[0], record.seq))
-                    else:
-                        f.write('>{}\n{}\n'.format(record.id, record.seq))
-                for record in records_spec:
-                    for location in accession_pool_spec[record.id]:
+            else:
+                with open(destination_file, 'w') as f:
+                    for record in records_whole:
                         if self.checkBox_removeVersion.isChecked():
-                            f.write('>{} | {}-{}\n{}\n'.format(record.id.split('.')[0], location[0], location[1],
-                                                               record.seq[location[0] - 1:location[1]]))
+                            f.write('>{}\n{}\n'.format(record.id.split('.')[0], record.seq))
                         else:
-                            f.write('>{} | {}-{}\n{}\n'.format(record.id, location[0], location[1],
-                                                               record.seq[location[0] - 1:location[1]]))
+                            f.write('>{}\n{}\n'.format(record.id, record.seq))
+                    for record in records_spec:
+                        for location in accession_pool_spec[record.id]:
+                            if self.checkBox_removeVersion.isChecked():
+                                f.write('>{} | {}-{}\n{}\n'.format(record.id.split('.')[0], location[0], location[1],
+                                                                   record.seq[location[0] - 1:location[1]]))
+                            else:
+                                f.write('>{} | {}-{}\n{}\n'.format(record.id, location[0], location[1],
+                                                                   record.seq[location[0] - 1:location[1]]))
             self.statusbar.showMessage("Done.")
         except:
             self.raise_warnings('I/O error: Can\'t create output file',

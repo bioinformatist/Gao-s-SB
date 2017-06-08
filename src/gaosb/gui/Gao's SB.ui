@@ -207,22 +207,27 @@ p, li { white-space: pre-wrap; }
         <height>21</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Enter list:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Enter list:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>190</y>
+        <x>450</x>
+        <y>210</y>
         <width>191</width>
         <height>16</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>11</pointsize>
+        <pointsize>10</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -234,7 +239,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QTextEdit" name="textEdit_downloadSeqDestination">
       <property name="geometry">
        <rect>
-        <x>460</x>
+        <x>450</x>
         <y>230</y>
         <width>221</width>
         <height>31</height>
@@ -244,7 +249,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="pushButton_doDownloadSeq">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>600</x>
         <y>280</y>
         <width>75</width>
         <height>23</height>
@@ -267,22 +272,60 @@ p, li { white-space: pre-wrap; }
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_removeVersion">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>120</y>
-        <width>221</width>
-        <height>41</height>
+        <x>450</x>
+        <y>100</y>
+        <width>333</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QCheckBox" name="checkBox_oneFile">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>One file, one sequence (use ID as file name)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_removeVersion">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Auto remove version number</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>70</y>
+        <width>191</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
-       <string>Auto remove version number</string>
+       <string>Output mode</string>
       </property>
      </widget>
      <zorder>textEdit_accessionList</zorder>
@@ -295,6 +338,9 @@ p, li { white-space: pre-wrap; }
      <zorder>radioButton_wholeSeq</zorder>
      <zorder>radioButton_specRegion</zorder>
      <zorder>checkBox_removeVersion</zorder>
+     <zorder>checkBox_oneFile</zorder>
+     <zorder></zorder>
+     <zorder>label_7</zorder>
     </widget>
     <widget class="QWidget" name="page_filtering">
      <widget class="QTabWidget" name="tabWidget">
@@ -543,7 +589,7 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="action_help"/>
     <addaction name="separator"/>
-    <addaction name="actionAbout"/>
+    <addaction name="action_about"/>
    </widget>
    <widget class="QMenu" name="menuTables">
     <property name="title">
@@ -551,8 +597,15 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="action_filtering"/>
    </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="action_setWorkingDirectory"/>
+   </widget>
    <addaction name="menuSequences"/>
    <addaction name="menuTables"/>
+   <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -561,7 +614,7 @@ p, li { white-space: pre-wrap; }
     <string>Align queries</string>
    </property>
   </action>
-  <action name="actionAbout">
+  <action name="action_about">
    <property name="text">
     <string>About</string>
    </property>
@@ -579,6 +632,21 @@ p, li { white-space: pre-wrap; }
   <action name="action_help">
    <property name="text">
     <string>Help</string>
+   </property>
+  </action>
+  <action name="actionMerge_or_Spliting">
+   <property name="text">
+    <string>Merge or Spliting</string>
+   </property>
+  </action>
+  <action name="actionMerge_Split">
+   <property name="text">
+    <string>Merge or split</string>
+   </property>
+  </action>
+  <action name="action_setWorkingDirectory">
+   <property name="text">
+    <string>Set working directory...</string>
    </property>
   </action>
  </widget>
