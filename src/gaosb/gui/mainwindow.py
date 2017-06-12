@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -245,118 +246,123 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Gao\'s SB"))
         self.label_about.setText(_translate("MainWindow", "About"))
-        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">What you\'re using is a toolbox for</span></p><p><span style=\" font-size:18pt;\">bioinformatics works in Dr. Gao\'s lab.</span></p><p><span style=\" font-size:18pt;\">Contributors: </span><a href=\"http://icannotendure.space/\"><span style=\" font-size:22pt; font-weight:600; font-style:italic; text-decoration: underline; color:#0000ff;\">Yu Sun</span></a></p><p><span style=\" font-size:18pt;\">You can choose tools from menu.</span></p></body></html>"))
+        self.label_2.setText(_translate("MainWindow",
+                                        "<html><head/><body><p><span style=\" font-size:18pt;\">What you\'re using is a toolbox for</span></p><p><span style=\" font-size:18pt;\">bioinformatics works in Dr. Gao\'s lab.</span></p><p><span style=\" font-size:18pt;\">Contributors: </span><a href=\"http://icannotendure.space/\"><span style=\" font-size:22pt; font-weight:600; font-style:italic; text-decoration: underline; color:#0000ff;\">Yu Sun</span></a></p><p><span style=\" font-size:18pt;\">You can choose tools from menu.</span></p></body></html>"))
         self.label_subject.setText(_translate("MainWindow", "Subject"))
         self.label_query.setText(_translate("MainWindow", "Query"))
         self.label.setText(_translate("MainWindow", "Output file:"))
         self.pushButton_doAligning.setText(_translate("MainWindow", "Do!"))
-        self.textEdit_accessionList.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\"># Whole sequence example</span><span style=\" color:#666666;\">:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NC_005809.1</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NR_046235</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\"># By specific region example:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NC_005809.1    1655    1777</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NC_005809.1    1111    1234</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt; color:#666666;\"><br /></p></body></html>"))
-        self.label_accessionList.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600;\">Enter list:</span></p></body></html>"))
+        self.textEdit_accessionList.setHtml(_translate("MainWindow",
+                                                       "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                       "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                       "p, li { white-space: pre-wrap; }\n"
+                                                       "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+                                                       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\"># Whole sequence example</span><span style=\" color:#666666;\">:</span></p>\n"
+                                                       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NC_005809.1</span></p>\n"
+                                                       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NR_046235</span></p>\n"
+                                                       "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+                                                       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\"># By specific region example:</span></p>\n"
+                                                       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NC_005809.1    1655    1777</span></p>\n"
+                                                       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; color:#666666;\">NC_005809.1    1111    1234</span></p>\n"
+                                                       "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt; color:#666666;\"><br /></p></body></html>"))
+        self.label_accessionList.setText(_translate("MainWindow",
+                                                    "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600;\">Enter list:</span></p></body></html>"))
         self.label_3.setText(_translate("MainWindow", "Output file"))
         self.pushButton_doDownloadSeq.setText(_translate("MainWindow", "Do!"))
         self.checkBox_oneFile.setText(_translate("MainWindow", "One file, one sequence (use ID as file name)"))
         self.checkBox_removeVersion.setText(_translate("MainWindow", "Auto remove version number"))
         self.label_7.setText(_translate("MainWindow", "Output mode"))
-        self.textEdit_uniqInput.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
-"<tr>\n"
-"<td width=\"280\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\"># Example:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">FJ150422</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">DQ439815</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">DQ439815</span></p></td></tr>\n"
-"<tr>\n"
-"<td>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr></table></body></html>"))
+        self.textEdit_uniqInput.setHtml(_translate("MainWindow",
+                                                   "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                   "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                   "p, li { white-space: pre-wrap; }\n"
+                                                   "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+                                                   "<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" cellspacing=\"2\" cellpadding=\"0\">\n"
+                                                   "<tr>\n"
+                                                   "<td width=\"280\">\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\"># Example:</span></p>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">J02428,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">Z30318,FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AF014388</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">FJ150422</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">DQ439815</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">DQ439815</span></p></td></tr>\n"
+                                                   "<tr>\n"
+                                                   "<td>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#666666;\">AY243312</span></p></td></tr></table></body></html>"))
         self.label_4.setText(_translate("MainWindow", "Text to be split then apply uniq on:"))
         self.label_5.setText(_translate("MainWindow", "Result:"))
         self.label_6.setText(_translate("MainWindow", "Separator (regular expreesion):"))
-        self.textEdit_uniqSep.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'inherit\'; font-size:10pt; color:#666666; background-color:#eff0f1;\">[^a-zA-Z0-9]</span></p></body></html>"))
+        self.textEdit_uniqSep.setHtml(_translate("MainWindow",
+                                                 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                 "p, li { white-space: pre-wrap; }\n"
+                                                 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+                                                 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'inherit\'; font-size:10pt; color:#666666; background-color:#eff0f1;\">[^a-zA-Z0-9]</span></p></body></html>"))
         self.pushButton_doSuperUniq.setText(_translate("MainWindow", "Do!"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_superUniq), _translate("MainWindow", "Super Uniqer"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Developing..."))
@@ -372,4 +378,3 @@ class Ui_MainWindow(object):
         self.actionMerge_or_Spliting.setText(_translate("MainWindow", "Merge or Spliting"))
         self.actionMerge_Split.setText(_translate("MainWindow", "Merge or split"))
         self.action_setWorkingDirectory.setText(_translate("MainWindow", "Set working directory..."))
-

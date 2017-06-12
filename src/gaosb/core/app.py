@@ -9,8 +9,9 @@ from Bio import SeqIO
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QDesktopServices
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox, QApplication
 
+from gaosb.core.setWorkingDir import SetWorkingDir
 from gaosb.gui.mainwindow import Ui_MainWindow
 
 
@@ -30,7 +31,7 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         super(Application, self).__init__()
         self.setupUi(self)
         self._set_connections()
-        self.working_directory = os.getcwd()
+        self._working_directory = os.getcwd()
 
     def raise_warnings(self, warning_content, warning_details, warning_title="Warning"):
         def show_warnings(warning_content, warning_details, warning_title="Warning"):
@@ -62,6 +63,14 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         sys.excepthook = show_warnings(warning_content, warning_details)
         sys.excepthook = tmp_excepthook
 
+    def set_working_directory(self, _working_directory):
+        # fuck = SetWorkingDir()
+
+        app = QApplication(sys.argv)
+        ex = SetWorkingDir()
+        ex.show()
+        sys.exit(app.exec_())
+
     def _set_connections(self):
         """
         Build signal/slot connections once the app started.
@@ -80,7 +89,7 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
                 return
 
         self.action_help.triggered.connect(open_help_url)
-        # self.action_setWorkingDirectory.triggered.connect()
+        self.action_setWorkingDirectory.triggered.connect(self.set_working_directory)
         self.action_queryAligner.triggered.connect(self.init_align_queries)
         self.action_downloadSequence.triggered.connect(self.init_download_sequences)
         self.action_filtering.triggered.connect(self.init_filtering)
