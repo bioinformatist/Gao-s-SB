@@ -9,9 +9,8 @@ from Bio import SeqIO
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QDesktopServices
-from PyQt5.QtWidgets import QMessageBox, QApplication
+from PyQt5.QtWidgets import QMessageBox
 
-from gaosb.core.setWorkingDir import SetWorkingDir
 from gaosb.gui.mainwindow import Ui_MainWindow
 
 
@@ -63,13 +62,15 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         sys.excepthook = show_warnings(warning_content, warning_details)
         sys.excepthook = tmp_excepthook
 
-    def set_working_directory(self, _working_directory):
-        # fuck = SetWorkingDir()
 
-        app = QApplication(sys.argv)
-        ex = SetWorkingDir()
-        ex.show()
-        sys.exit(app.exec_())
+    def set_working_directory(self, _working_directory):
+        self._working_directory = QtWidgets.QFileDialog.getExistingDirectory(self, 'Choosing working directory')
+        self.statusbar.showMessage('Working directory has been set to {}'.format(self._working_directory))
+
+    def choose_file_name(self, box, type='output'):
+        filename = QtWidgets.QFileDialog.getSaveFileName(self, 'Choose {} file...'.format(type))[0]
+        box.setText(filename)
+        self.statusbar.showMessage('{} file has been set as {}'.format(type.capitalize(), filename))
 
     def _set_connections(self):
         """
@@ -93,10 +94,6 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         self.action_queryAligner.triggered.connect(self.init_align_queries)
         self.action_downloadSequence.triggered.connect(self.init_download_sequences)
         self.action_filtering.triggered.connect(self.init_filtering)
-
-    def checkbox_activate_button(self, checkbox, button):
-        if checkbox.isChecked():
-            button.setEnabled(True)
 
     def init_about(self):
         self.stackedWidget_main.setCurrentWidget(self.page_about)
@@ -132,18 +129,18 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def init_align_queries(self):
         self.stackedWidget_main.setCurrentWidget(self.page_alignQuery)
+        choose = lambda: self.choose_file_name(self.textBrowser_alignmentDestination)
+        self.pushButton_changeFileAlignment.clicked.connect(choose)
         self.pushButton_doAligning.clicked.connect(self.do_align_query)
-        self.monitor_text_edit(self.pushButton_doAligning, self.textEdit_query, self.textEdit_subject,
-                               self.textEdit_alignmentDestination)
+        self.monitor_text_edit(self.pushButton_doAligning, self.textEdit_query, self.textEdit_subject)
 
     def init_download_sequences(self):
         self.stackedWidget_main.setCurrentWidget(self.page_downloadSeq)
+        choose = lambda: self.choose_file_name(self.textBrowser_downloadSeqDestination)
+        self.pushButton_changeFileDownloadSeq.clicked.connect(choose)
         self.pushButton_doDownloadSeq.clicked.connect(self.do_download_seq)
         self.link_checkbox(self.checkBox_oneFile, self.checkBox_removeVersion)
-        activating = lambda: self.checkbox_activate_button(self.checkBox_oneFile, self.pushButton_doDownloadSeq)
-        self.checkBox_oneFile.stateChanged.connect(activating)
-        self.monitor_text_edit(self.pushButton_doDownloadSeq, self.textEdit_accessionList,
-                               self.textEdit_downloadSeqDestination)
+        self.monitor_text_edit(self.pushButton_doDownloadSeq, self.textEdit_accessionList)
 
     def init_filtering(self):
         self.stackedWidget_main.setCurrentWidget(self.page_filtering)
@@ -176,7 +173,7 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
                                 'You should check your privilege and remaining disk space.')
             return
         # Transfer filename in Text Edit
-        destination_file = str(self.textEdit_alignmentDestination.toPlainText())
+        destination_file = str(self.textBrowser_alignmentDestination.toPlainText())
 
         # Call magicblast and redirect its output (SAM format in default)
         self.statusbar.showMessage('Running magicblast...')
@@ -243,7 +240,7 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         self.statusbar.showMessage('Parsing parameters...')
         Entrez.email = "sun_yu@mail.nankai.edu.cn"
         accession_list = str(self.textEdit_accessionList.toPlainText()).splitlines()
-        destination_file = str(self.textEdit_downloadSeqDestination.toPlainText())
+        destination_file = str(self.textBrowser_downloadSeqDestination.toPlainText())
 
         try:
             [accession_list.remove(s) for s in accession_list if s == '']
@@ -257,7 +254,8 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
                 if blank_regex.search(accession):
                     if self.checkBox_oneFile.isChecked():
                         raise Exception
-                    accession = blank_regex.split(accession)
+                    accession = blank_regex.split(accession.strip())
+                    [print(x) for x in accession[-2:]]
                     accession_pool_spec[accession[0]].append([int(x) for x in accession[-2:]])
                 else:
                     accession_pool_whole.append(accession)
@@ -280,6 +278,7 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             self.statusbar.showMessage('Parsing downloaded sequences...')
             if self.checkBox_oneFile.isChecked():
+                os.chdir(self._working_directory)
                 for record in records_whole:
                     with open(record.id.split('.')[0] + '.fa', 'w') as f:
                         f.write('>{}\n{}\n'.format(record.id.split('.')[0], record.seq))
@@ -306,10 +305,10 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def do_super_uniq(self):
         self.statusbar.showMessage('Running...')
+        # Clear current content in textBrowser (maybe exists)
         self.textBrowser_uniqResult.setText('')
         redundant_list = str(self.textEdit_uniqInput.toPlainText()).splitlines()
         custom_regex = re.compile(str(self.textEdit_uniqSep.toPlainText()))
-        print(custom_regex)
 
         def remove_redundant(input_list):
             redundant_pool = []
