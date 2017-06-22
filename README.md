@@ -57,17 +57,15 @@ The result of this tool seems like:
 
 (b) In "one file, one sequence" mode, It will generate files with one file containing one sequence.
 
-
 ### 3. Remove text redundancy (could specify any separator)
 ![super_uniqer.png](docs/imgs/super_uniqer.png)
-
-## Contributor
-- [Yu Sun](http://icannotendure.space/)
-- [Zhiguang Chen](https://github.com/Dgmaxxx) (May participate soon）
 
 ### About
 ![about.png](docs/imgs/about.png)
 
+## Contributor
+- [Yu Sun](http://icannotendure.space/)
+- [Zhiguang Chen](https://github.com/Dgmaxxx) (May participate soon）
 
 ## TODO
 - ~~Add logo.~~
