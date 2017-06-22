@@ -34,6 +34,9 @@ class Ui_MainWindow(object):
         self.label_2 = QtWidgets.QLabel(self.page_about)
         self.label_2.setGeometry(QtCore.QRect(20, 50, 741, 421))
         self.label_2.setObjectName("label_2")
+        self.label_8 = QtWidgets.QLabel(self.page_about)
+        self.label_8.setGeometry(QtCore.QRect(503, 110, 261, 271))
+        self.label_8.setObjectName("label_8")
         self.stackedWidget_main.addWidget(self.page_about)
         self.page_alignQuery = QtWidgets.QWidget()
         self.page_alignQuery.setObjectName("page_alignQuery")
@@ -265,14 +268,32 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Gao\'s SB"))
         self.label_about.setText(_translate("MainWindow", "About"))
         self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">What you\'re using is a toolbox for</span></p><p><span style=\" font-size:18pt;\">bioinformatics works in Dr. Gao\'s lab.</span></p><p><span style=\" font-size:18pt;\">Contributors: </span><a href=\"http://icannotendure.space/\"><span style=\" font-size:22pt; font-weight:600; font-style:italic; text-decoration: underline; color:#0000ff;\">Yu Sun</span></a></p><p><span style=\" font-size:18pt;\">You can choose tools from menu.</span></p></body></html>"))
+        self.label_8.setText(_translate("MainWindow", "<html><head/><body><p><img src=\":/icon/Radiance.ico\"/></p></body></html>"))
         self.label_subject.setText(_translate("MainWindow", "Subject"))
         self.label_query.setText(_translate("MainWindow", "Query"))
         self.label.setText(_translate("MainWindow", "Output file"))
+        self.textEdit_subject.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#666666;\"># Input the subject here, only support one sequence:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#666666;\">&gt; subject</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#666666;\">AATGATTAGTGTGAATCCC</span></p></body></html>"))
+        self.textEdit_query.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#666666;\"># Input queries here</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#666666;\">&gt; query1</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#666666;\">AATGATTAGTGTGAATCCC</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#666666;\">&gt; query2</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#666666;\">AATGATTAGT</span><span style=\" text-decoration: underline; color:#00ff00;\">GA</span><span style=\" color:#666666;\">ATCCC</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#666666;\">&gt; query3</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#666666;\">AAT</span><span style=\" color:#ff0000;\">C</span><span style=\" color:#666666;\">ATTAGTG</span><span style=\" color:#0000ff;\">AA</span><span style=\" color:#666666;\">TGAATCCC</span></p></body></html>"))
         self.textBrowser_alignmentDestination.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">                    </p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">alignment.txt                </p></body></html>"))
         self.pushButton_changeFileAlignment.setText(_translate("MainWindow", "Change..."))
         self.pushButton_doAligning.setText(_translate("MainWindow", "Do!"))
@@ -297,7 +318,6 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">                    </p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Downloaded sequences.txt                </p></body></html>"))
         self.pushButton_changeFileDownloadSeq.setText(_translate("MainWindow", "Change..."))
         self.pushButton_doDownloadSeq.setText(_translate("MainWindow", "Do!"))

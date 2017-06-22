@@ -45,8 +45,8 @@ class Application(QtWidgets.QMainWindow, Ui_MainWindow):
 
             msg.setIcon(QMessageBox.Warning)
             msg.setText(warning_content)
-            msg.setInformativeText("You may check usage at "
-                                   "<a href=https://github.com/bioinformatist/Gao-s-SB#examples>the owner's GitHub</a>."
+            msg.setInformativeText("You may check usage or "
+                                   "send email to Yu Sun <icannotendure666@gmail.com> to ask for help."
                                    "Choose <b>Show Details</b> for additional information...")
             msg.setWindowTitle(warning_title)
 
