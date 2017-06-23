@@ -68,10 +68,10 @@ The result of this tool seems like:
 - [Zhiguang Chen](https://github.com/Dgmaxxx) (May participate soon）
 
 ## TODO
-- ~~Add logo.~~
-- ~~Add icon.~~
-- Perform UPX compression on certain dependencies for binary release.
-- New feature: Batch extract sequences from *FASTA/FASTQ* file.
+- [x] Add logo.
+- [x] Add icon.
+- [ ] Perform UPX compression on certain dependencies for binary release.
+- [ ] New feature: Batch extract sequences from *FASTA/FASTQ* file.
 
 ## Acknowledgement
 Thanks for [Zhuoer Dong](https://github.com/Allan-Hilbert)'s suggestion on the name of this software.
