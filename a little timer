@@ -1,0 +1,41 @@
+#!usr/bin/python
+#coding:utf-8
+#author:kim
+#version:1.0
+#python version:3.5.2
+
+
+print ("Usage:This is a little Timer for u to use in your script easly!")
+
+
+
+
+import time
+#requirement: time , u can install it bu run "python -m pip install time" within CMD
+
+
+
+def timer(func):
+  def wrapper():
+    start=time.clock()
+    func()
+    end  =time.closk()
+    print("Use time {} to finish !".format(end-start))
+  return wrapper
+  
+  
+#example
+
+@timer
+def main():
+  counter=0
+  for i in range(999):
+    for i in range(999):
+      counter+=1
+      
+      
+      
+      
+      
+ main()
+ 
