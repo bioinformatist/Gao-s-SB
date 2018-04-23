@@ -5,7 +5,7 @@ A toolbox for bioinformatics works in Dr. Gao's lab. Also known as:
 >Dr. <i>**G**</i>aoShan's <i>**a**</i>bnormal requirements <i>**o**</i>riented, 
 <i>**S**</i>uper <i>**h**</i>umorous <i>**a**</i>nd <i>**n**</i>ot <i>**S**</i>cientific tool <i>**B**</i>ox
 
---By [Zhuoer Dong](https://github.com/Allan-Hilbert), with a little modification.
+--By [Zhuoer Dong](https://github.com/dongzhuoer), with a little modification.
 
 ## Requirements
 - None
